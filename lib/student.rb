@@ -5,6 +5,16 @@ class Student
     @name = student_info[:name]
     @age = student_info[:age]
     @scores = []
-    @grade = 0
+  end
+
+  def log_score(score)
+    @scores << score
+  end
+
+  def grade 
+    scores_total = @scores.sum(0.0)
+    num_of_scores = @scores.size
+    @grade = scores_total / num_of_scores
+    @grade
   end
 end
