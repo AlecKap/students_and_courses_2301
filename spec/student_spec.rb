@@ -1,18 +1,17 @@
 require './lib/student'
 
 RSpec.describe Student do
+  before(:each) do
+      @student = Student.new({name: "Morgan", age: 21})
+    end
   describe 'exists' do
     it '#initializes' do
-      student = Student.new({name: "Morgan", age: 21})
-
-      expect(student).to be_a(Student)
+      expect(@student).to be_a(Student)
     end
   end
 
   describe 'has student info' do
-    before(:each) do
-      @student = Student.new({name: "Morgan", age: 21})
-    end
+    
     it '#name' do
       expect(@student.name).to eq("Morgan")
     end
@@ -25,8 +24,23 @@ RSpec.describe Student do
       expect(@student.scores).to eq([])
     end
 
-    xit '#grade' do
-      expect(@student.grade).to eq(83.5)
+  end
+
+  describe '#logged_score' do
+    it 'logs score' do
+      @student.log_score(89)
+      @student.log_score(78)
+
+      expect(@student.scores).to eq([89, 78])
+    end
+  end
+
+  describe '#grade' do
+    it 'gives an average of scores' do
+      @student.log_score(89)
+      @student.log_score(78)
+
+      expect(@student.grade).to be(83.5)
     end
   end
 end
