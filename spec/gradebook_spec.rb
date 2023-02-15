@@ -22,10 +22,22 @@ RSpec.describe Gradebook do
     end
   end
 
-  # describe 'can list all courses' do
-  #   it '#list_all_courses' do
-  #     expect(@gradebook.list_all_courses).to 
-  #   end
+  describe 'can add courses' do
+    it '#add_course' do
+      course1 = Course.new("Calculus", 2)
+      added_courses = @gradebook.add_course(course1)
+
+      expect(added_courses).to eq([course1])
+    end
+  end
+
+  describe 'can list all students' do
+    it '#list_all_students' do
+      expect(@gradebook.list_all_students).to be_a(Hash)
+      expect(@gradebook.list_all_students.first).to be_a(Hash)
+      
+
+    end
 
   # describe 'lists students below passing' do
   #   it '#students_below' do
